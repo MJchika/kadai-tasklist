@@ -1,0 +1,25 @@
+/* default style */
+body {
+  background-color: #000;
+}
+
+. (min-width: 500px) {
+    /* style applied if window's width is 500px or more */
+    body {
+        background-color: #f00;
+    }
+}
+
+@media (min-width: 750px) {
+    /* style applied if window's width is 750px or more */
+    body {
+        background-color: #0f0;
+    }
+}
+
+@media (min-width: 1000px) {
+    /* style applied if window's width is 1000px or more */
+    body {
+        background-color: #00f;
+    }
+}
