@@ -14,3 +14,6 @@
 Route::resource('tasks', 'tasksController');
 // copy function (button)
 Route::get('/', 'tasksController@index');
+Route::get('/', function () {
+    return view('welcome');
+});
