@@ -25,4 +25,5 @@
             </tbody>
         </table>
     @endif
+    {!! link_to_route('tasks.create', 'post new task', null, ['class' => 'btn btn-primary']) !!}
 @endsection
