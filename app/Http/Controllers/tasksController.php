@@ -13,26 +13,28 @@ class tasksController extends Controller
         if (\Auth::check()) {
             $user = \Auth::user();
             $tasks = $user->tasks()->orderBy('created_at', 'desc')->paginate(10);
-
             $data = [
                 'user' => $user,
                 'tasks' => $tasks,
             ];
             $data += $this->counts($user);
             return view('tasks.index', $data);
-        }else {
+        }else{
             return view('welcome');
         }
     }
      
     public function create()
     {    $tasks = new Task;
-
-        return view('tasks.create', [
-            'tasks' => $tasks,
-        ]);
+         if (\Auth::check()) {
+       $data = [
+                'tasks' => $tasks,
+            ];
+        return view('tasks.create', $data); 
+         }else{
+        return redirect('/');  
     }
-
+}
   
     public function store(Request $request)
     {   $tasks = new Task;
@@ -56,7 +58,7 @@ class tasksController extends Controller
         return view('tasks.show', [
             'tasks' => $tasks,
         ]);}
-     return redirect('/');
+     return redirect('welcome');
     }
 
  public function edit($id)
@@ -66,7 +68,7 @@ class tasksController extends Controller
      return view('tasks.edit', [
     'tasks' => $tasks,
                                      ]);
-     return redirect('/');         }
+     return redirect('welcome');         }
 
  public function update(Request $request, $id)
     {    $this->validate($request, [
